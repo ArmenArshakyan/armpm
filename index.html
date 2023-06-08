@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v10</h1>
+    <h1>Notes App v11</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -39,7 +39,8 @@
         const response = await fetch('https://read.armen-arsh.workers.dev');
         if (response.ok) {
           const notes = await response.text();
-          document.getElementById('notesSection').textContent = notes;
+          const notesSection = document.getElementById('notesSection');
+          notesSection.innerHTML = '<pre>' + notes + '</pre>';
         } else {
           console.error('Failed to read notes:', response.status, response.statusText);
         }
