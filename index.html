@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Notes v8</title>
+  <title>Notes v9</title>
   <style>
     .container {
       width: 300px;
@@ -29,7 +29,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Notes v8</h1>
+    <h1>Notes v9</h1>
     <form>
       <textarea id="myText" placeholder="Enter your text here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
@@ -85,8 +85,11 @@
         // Handle the response from the write worker
         alert('Text saved successfully.');
 
-        // Refresh the notes display
-        await fetchNotes();
+        // Append the new note directly to the existing notes
+        var notesContainer = document.getElementById('notes');
+        var newNoteParagraph = document.createElement('p');
+        newNoteParagraph.textContent = text;
+        notesContainer.appendChild(newNoteParagraph);
       } else {
         console.error('Error:', response.status);
       }
