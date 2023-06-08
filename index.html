@@ -66,15 +66,11 @@
     function fetchNotes() {
       // Make an HTTP GET request to the read worker
       fetch('https://read-worker.armen-arsh.workers.dev')
-        .then(response => response.json())
+        .then(response => response.text())
         .then(data => {
-          if (data.text) {
-            // Update the notes display
-            var notesContainer = document.getElementById('notes');
-            var notesParagraph = document.createElement('p');
-            notesParagraph.textContent = data.text;
-            notesContainer.appendChild(notesParagraph);
-          }
+          // Update the notes display
+          var notesContainer = document.getElementById('notes');
+          notesContainer.innerHTML = data;
         })
         .catch(error => {
           console.error('Error:', error);
