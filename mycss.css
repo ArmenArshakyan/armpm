@@ -38,3 +38,7 @@ body {
     content: "•";
     margin-right: 0.5em;
 }
+
+#noteInput {
+    font-size: 16px;
+}
