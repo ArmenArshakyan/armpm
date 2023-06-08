@@ -22,8 +22,19 @@
 
 #notes_section {
     font-size: 36px;
+    margin-bottom: 10px;
 }
 
 body {
     margin: 30px;
+}
+
+#notesSection p {
+    font-size: 20px;
+    font-family: monospace;
+}
+
+#notesSection p::before {
+    content: "•";
+    margin-right: 0.5em;
 }
