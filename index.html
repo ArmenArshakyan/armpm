@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v15</h1>
+    <h1>Notes App v16</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -35,20 +35,20 @@
         }
       });
 
-        document.getElementById('showNotesButton').addEventListener('click', async function () {
-          const response = await fetch('https://read.armen-arsh.workers.dev/read');
-          if (response.ok) {
-            const data = await response.json();
-            const notes = data.value;
-            const notesSection = document.getElementById('notesSection');
-            notesSection.innerHTML = '';
-            notes.forEach((note) => {
-              const noteParagraph = document.createElement('p');
-              noteParagraph.innerText = note;
-              notesSection.appendChild(noteParagraph);
-            });
-          } else {
-            console.error('Failed to read notes:', response.status, response.statusText);
+      document.getElementById('showNotesButton').addEventListener('click', async function () {
+        const response = await fetch('https://read.armen-arsh.workers.dev/read');
+        if (response.ok) {
+          const data = await response.json();
+          const notes = data.notes;
+          const notesSection = document.getElementById('notesSection');
+          notesSection.innerHTML = '';
+          notes.forEach((note) => {
+            const noteParagraph = document.createElement('p');
+            noteParagraph.innerText = note;
+            notesSection.appendChild(noteParagraph);
+          });
+        } else {
+          console.error('Failed to read notes:', response.status, response.statusText);
         }
       });
     </script>
