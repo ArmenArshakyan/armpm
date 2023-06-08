@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v4</h1>
+    <h1>Notes App v5</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -22,7 +22,7 @@
         const noteInput = document.getElementById('noteInput').value;
 
         // Send the note to the worker for writing
-        const response = await fetch('https://write.armen-arsh.workers.dev', {
+        const response = await fetch('https://write.armen-arsh.workers.dev/write', {
           method: 'POST',
           body: noteInput,
         });
@@ -36,9 +36,9 @@
       });
 
       document.getElementById('showNotesButton').addEventListener('click', async function () {
-        const response = await fetch('https://read.armen-arsh.workers.dev');
+        const response = await fetch('https://read.armen-arsh.workers.dev/read');
         if (response.ok) {
-          const notes = await response.json();
+          const notes = await response.text();
           displayNotes(notes);
         } else {
           console.error('Failed to read notes:', response.status, response.statusText);
@@ -49,11 +49,12 @@
         const notesSection = document.getElementById('notesSection');
         notesSection.innerHTML = ''; // Clear previous notes
 
-        if (notes.length === 0) {
+        if (notes === 'No notes found') {
           notesSection.innerHTML = '<p>No notes found</p>';
         } else {
           const ul = document.createElement('ul');
-          notes.forEach(note => {
+          const noteArray = notes.split('\n');
+          noteArray.forEach(note => {
             const li = document.createElement('li');
             li.textContent = note;
             ul.appendChild(li);
