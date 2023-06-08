@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Notes v9</title>
+  <title>Notes v10</title>
   <style>
     .container {
       width: 300px;
@@ -25,18 +25,27 @@
     #notes-container {
       margin-top: 20px;
     }
+
+    #notes-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #notes-list li {
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Notes v9</h1>
+    <h1>Notes v10</h1>
     <form>
       <textarea id="myText" placeholder="Enter your text here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
     </form>
     <div id="notes-container">
       <h1>Notes</h1>
-      <div id="notes"></div>
+      <ul id="notes-list"></ul>
     </div>
   </div>
 
@@ -50,19 +59,19 @@
         const data = await response.json();
 
         // Update the notes display
-        var notesContainer = document.getElementById('notes');
-        notesContainer.innerHTML = ''; // Clear existing notes
+        var notesList = document.getElementById('notes-list');
+        notesList.innerHTML = ''; // Clear existing notes
 
         if (data.notes && data.notes.length > 0) {
           data.notes.forEach(note => {
-            var notesParagraph = document.createElement('p');
-            notesParagraph.textContent = note;
-            notesContainer.appendChild(notesParagraph);
+            var listItem = document.createElement('li');
+            listItem.textContent = note;
+            notesList.appendChild(listItem);
           });
         } else {
-          var noNotesMessage = document.createElement('p');
-          noNotesMessage.textContent = 'No notes found';
-          notesContainer.appendChild(noNotesMessage);
+          var listItem = document.createElement('li');
+          listItem.textContent = 'No notes found';
+          notesList.appendChild(listItem);
         }
       } else {
         console.error('Error:', response.status);
@@ -85,11 +94,8 @@
         // Handle the response from the write worker
         alert('Text saved successfully.');
 
-        // Append the new note directly to the existing notes
-        var notesContainer = document.getElementById('notes');
-        var newNoteParagraph = document.createElement('p');
-        newNoteParagraph.textContent = text;
-        notesContainer.appendChild(newNoteParagraph);
+        // Refresh the notes display
+        await fetchNotes();
       } else {
         console.error('Error:', response.status);
       }
