@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Notes v4</title>
+  <title>Notes v6</title>
   <style>
     .container {
       width: 300px;
@@ -29,7 +29,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Notes v4</h1>
+    <h1>Notes v6</h1>
     <form>
       <textarea id="myText" placeholder="Enter your text here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
@@ -37,12 +37,54 @@
     <div id="notes"></div>
   </div>
 
+  <h1>Notes</h1>
+  <div id="notes"></div>
+
+  <script>
+    async function fetchNotes() {
+      // Make an HTTP GET request to the read worker
+      const response = await fetch('https://read.armen-arsh.workers.dev');
+
+      if (response.ok) {
+        // Retrieve the notes data from the response
+        const data = await response.json();
+
+        // Update the notes display
+        var notesContainer = document.getElementById('notes');
+        notesContainer.innerHTML = ''; // Clear existing notes
+
+        if (data.notes && data.notes.length > 0) {
+          data.notes.forEach(note => {
+            var noteHeading = document.createElement('h1');
+            noteHeading.textContent = 'Note';
+
+            var noteParagraph = document.createElement('p');
+            noteParagraph.textContent = note;
+
+            notesContainer.appendChild(noteHeading);
+            notesContainer.appendChild(noteParagraph);
+          });
+        } else {
+          var noNotesMessage = document.createElement('p');
+          noNotesMessage.textContent = 'No notes found';
+
+          notesContainer.appendChild(noNotesMessage);
+        }
+      } else {
+        console.error('Error:', response.status);
+      }
+    }
+
+    // Fetch the notes on page load
+    fetchNotes();
+  </script>
+
   <script>
     async function saveText() {
       var text = document.getElementById('myText').value;
 
       // Make an HTTP POST request to the write worker
-      const response = await fetch(' https://write.armen-arsh.workers.dev', {
+      const response = await fetch('https://write.armen-arsh.workers.dev', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -76,7 +118,7 @@
         if (data.notes && data.notes.length > 0) {
           data.notes.forEach(note => {
             var notesParagraph = document.createElement('p');
-            notesParagraph.textContent = note.text; // Update to note.text
+            notesParagraph.textContent = note; // Update to note.text
             notesContainer.appendChild(notesParagraph);
           });
         }
