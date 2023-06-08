@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v11</h1>
+    <h1>Notes App v12</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -38,9 +38,14 @@
       document.getElementById('showNotesButton').addEventListener('click', async function () {
         const response = await fetch('https://read.armen-arsh.workers.dev');
         if (response.ok) {
-          const notes = await response.text();
+          const notes = await response.json();
           const notesSection = document.getElementById('notesSection');
-          notesSection.innerHTML = '<pre>' + notes + '</pre>';
+          notesSection.innerHTML = '';
+          for (const note of notes) {
+            const noteParagraph = document.createElement('p');
+            noteParagraph.innerText = note;
+            notesSection.appendChild(noteParagraph);
+          }
         } else {
           console.error('Failed to read notes:', response.status, response.statusText);
         }
@@ -48,3 +53,6 @@
     </script>
   </body>
 </html>
+Please update your HTML code with the revised version above. Ensure that you have redeployed both the write and read workers after making these changes.
+
+Now, when you click 
