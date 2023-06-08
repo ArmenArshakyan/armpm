@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v19</h1>
+    <h1>Notes App v21</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -46,7 +46,7 @@
           const text = await response.text();
 
           // Display the plain text notes in the notes section
-          document.getElementById('notesSection').textContent = text;
+          document.getElementById('notesSection').innerHTML = text;
         } else {
           console.error('Failed to retrieve notes:', response.status, response.statusText);
         }
