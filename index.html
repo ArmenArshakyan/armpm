@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v9</h1>
+    <h1>Notes App v10</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -30,48 +30,20 @@
         if (response.ok) {
           // Clear the input field after successful submission
           document.getElementById('noteInput').value = '';
-
-          // Refresh the notes section to display the updated notes
-          refreshNotes();
         } else {
           console.error('Failed to write note:', response.status, response.statusText);
         }
       });
 
-      document.getElementById('showNotesButton').addEventListener('click', function () {
-        refreshNotes();
-      });
-
-      async function refreshNotes() {
+      document.getElementById('showNotesButton').addEventListener('click', async function () {
         const response = await fetch('https://read.armen-arsh.workers.dev');
         if (response.ok) {
           const notes = await response.text();
-          displayNotes(notes);
+          document.getElementById('notesSection').textContent = notes;
         } else {
           console.error('Failed to read notes:', response.status, response.statusText);
         }
-      }
-
-      function displayNotes(notes) {
-        const notesSection = document.getElementById('notesSection');
-        notesSection.innerHTML = '';
-
-        if (notes === 'No notes found') {
-          notesSection.innerHTML = '<p>No notes found</p>';
-        } else {
-          const noteArray = notes.split('\n');
-          const ul = document.createElement('ul');
-          noteArray.forEach(note => {
-            const li = document.createElement('li');
-            li.textContent = note;
-            ul.appendChild(li);
-          });
-          notesSection.appendChild(ul);
-        }
-      }
-
-      // Refresh the notes on page load
-      refreshNotes();
+      });
     </script>
   </body>
 </html>
