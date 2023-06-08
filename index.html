@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v3</h1>
+    <h1>Notes App v4</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -13,6 +13,8 @@
 
     <h2>Notes</h2>
     <div id="notesSection"></div>
+
+    <button id="showNotesButton">Show Notes</button>
 
     <script>
       document.getElementById('notesForm').addEventListener('submit', async function (event) {
@@ -28,27 +30,35 @@
         if (response.ok) {
           // Clear the input field after successful submission
           document.getElementById('noteInput').value = '';
-
-          // Refresh the notes section to display the updated notes
-          refreshNotes();
         } else {
           console.error('Failed to write note:', response.status, response.statusText);
         }
       });
 
-      document.addEventListener('DOMContentLoaded', async () => {
-        // Refresh the notes on page load
-        await refreshNotes();
-      });
-
-      async function refreshNotes() {
-        // Fetch the notes from the worker and display them in the notes section
+      document.getElementById('showNotesButton').addEventListener('click', async function () {
         const response = await fetch('https://read.armen-arsh.workers.dev');
         if (response.ok) {
-          const notes = await response.text();
-          document.getElementById('notesSection').textContent = notes;
+          const notes = await response.json();
+          displayNotes(notes);
         } else {
           console.error('Failed to read notes:', response.status, response.statusText);
+        }
+      });
+
+      function displayNotes(notes) {
+        const notesSection = document.getElementById('notesSection');
+        notesSection.innerHTML = ''; // Clear previous notes
+
+        if (notes.length === 0) {
+          notesSection.innerHTML = '<p>No notes found</p>';
+        } else {
+          const ul = document.createElement('ul');
+          notes.forEach(note => {
+            const li = document.createElement('li');
+            li.textContent = note;
+            ul.appendChild(li);
+          });
+          notesSection.appendChild(ul);
         }
       }
     </script>
