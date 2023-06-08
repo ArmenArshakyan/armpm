@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Meeting Notes for Cloudflare</title>
+  <title>My notes for Cloudflare</title>
   <style>
     .container {
-      width: 500px;
+      width: 300px;
       margin: 0 auto;
       padding: 20px;
     }
 
     textarea {
       width: 100%;
-      height: 300px;
+      height: 150px;
       resize: vertical;
     }
 
@@ -21,22 +21,27 @@
       padding: 10px;
       margin-top: 10px;
     }
+
+    #notes {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>My Meeting Notes for Cloudflare</h1>
+    <h1>My notes for Cloudflare</h1>
     <form>
-      <textarea id="myText" placeholder="Enter your text here..."></textarea>
+      <textarea id="myText" placeholder="Enter your notes here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
     </form>
+    <div id="notes"></div>
   </div>
 
   <script>
     function saveText() {
       var text = document.getElementById('myText').value;
 
-      // Make an HTTP POST request to the worker
+      // Make an HTTP POST request to the write worker
       fetch('https://write-worker.armen-arsh.workers.dev', {
         method: 'POST',
         headers: {
@@ -46,8 +51,11 @@
       })
       .then(response => response.json())
       .then(data => {
-        // Handle the response from the worker
+        // Handle the response from the write worker
         alert('Text saved: ' + data.text);
+
+        // Refresh the notes display
+        fetchNotes();
       })
       .catch(error => {
         // Handle any errors
@@ -55,18 +63,24 @@
       });
     }
 
-    // Fetch the text from the read worker and populate the textarea
-    fetch('https://read-worker.armen-arsh.workers.dev')
-      .then(response => response.json())
-      .then(data => {
-        if (data.text) {
-          document.getElementById('myText').value = data.text;
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  </script>
+    function fetchNotes() {
+      // Make an HTTP GET request to the read worker
+      fetch('https://read-worker.armen-arsh.workers.dev')
+        .then(response => response.json())
+        .then(data => {
+          if (data.text) {
+            // Update the notes display
+            var notesContainer = document.getElementById('notes');
+            notesContainer.textContent = data.text;
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
 
+    // Fetch the initial notes on page load
+    fetchNotes();
+  </script>
 </body>
 </html>
