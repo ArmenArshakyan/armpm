@@ -42,7 +42,7 @@
       var text = document.getElementById('myText').value;
 
       // Make an HTTP POST request to the write worker
-      const response = await fetch('https://write-worker.armen-arsh.workers.dev', {
+      const response = await fetch('https://write-worker.armen-arsh.workers.dev/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,3 +89,4 @@
     fetchNotes();
   </script>
 </body>
+</html>
