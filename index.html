@@ -31,5 +31,30 @@
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
     </form>
   </div>
+
+  <script>
+    function saveText() {
+      var text = document.getElementById('myText').value;
+
+      // Make an HTTP POST request to the worker
+      fetch('https://write-worker.armen-arsh.workers.dev', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ text: text }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response from the worker
+        alert('Text saved: ' + data.text);
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error('Error:', error);
+      });
+    }
+  </script>
+
 </body>
 </html>
