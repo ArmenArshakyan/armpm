@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Notes</title>
+  <title>Cloudflare Notes</title>
   <style>
     .container {
       width: 300px;
@@ -29,7 +29,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Notes</h1>
+    <h1>Cloudflare Notes</h1>
     <form>
       <textarea id="myText" placeholder="Enter your text here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
@@ -62,28 +62,28 @@
     }
 
     async function fetchNotes() {
-  // Make an HTTP GET request to the read worker
-  const response = await fetch('https://read-worker.armen-arsh.workers.dev');
+      // Make an HTTP GET request to the read worker
+      const response = await fetch('https://read-worker.armen-arsh.workers.dev');
 
-  if (response.ok) {
-    // Retrieve the notes data from the response
-    const data = await response.json();
+      if (response.ok) {
+        // Retrieve the notes data from the response
+        const data = await response.json();
 
-    // Update the notes display
-    var notesContainer = document.getElementById('notes');
-    notesContainer.innerHTML = ''; // Clear existing notes
+        // Update the notes display
+        var notesContainer = document.getElementById('notes');
+        notesContainer.innerHTML = ''; // Clear existing notes
 
-    if (data.notes && data.notes.length > 0) {
-      data.notes.forEach(note => {
-        var notesParagraph = document.createElement('p');
-        notesParagraph.textContent = note.text;
-        notesContainer.appendChild(notesParagraph);
-      });
+        if (data.notes && data.notes.length > 0) {
+          data.notes.forEach(note => {
+            var notesParagraph = document.createElement('p');
+            notesParagraph.textContent = note;
+            notesContainer.appendChild(notesParagraph);
+          });
+        }
+      } else {
+        console.error('Error:', response.status);
+      }
     }
-  } else {
-    console.error('Error:', response.status);
-  }
-}
 
     // Fetch the initial notes on page load
     fetchNotes();
