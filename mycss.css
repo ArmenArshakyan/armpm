@@ -42,3 +42,8 @@ body {
 #noteInput {
     font-size: 16px;
 }
+
+#cf-logo {
+    height: 70px;
+    margin-bottom: 20px;
+}
