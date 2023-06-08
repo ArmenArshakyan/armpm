@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My notes for Cloudflare</title>
+  <title>Notes for Cloudflare</title>
   <style>
     .container {
-      width: 300px;
+      width: 400px;
       margin: 0 auto;
       padding: 20px;
     }
 
     textarea {
       width: 100%;
-      height: 150px;
+      height: 250px;
       resize: vertical;
     }
 
@@ -29,7 +29,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>My notes for Cloudflare</h1>
+    <h1>Notes</h1>
     <form>
       <textarea id="myText" placeholder="Enter your notes here..."></textarea>
       <button class="btn-submit" type="button" onclick="saveText()">Submit</button>
@@ -71,7 +71,9 @@
           if (data.text) {
             // Update the notes display
             var notesContainer = document.getElementById('notes');
-            notesContainer.textContent = data.text;
+            var notesParagraph = document.createElement('p');
+            notesParagraph.textContent = data.text;
+            notesContainer.appendChild(notesParagraph);
           }
         })
         .catch(error => {
