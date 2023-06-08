@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v20</h1>
+    <h1>Notes App v21</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -32,7 +32,7 @@
           document.getElementById('noteInput').value = '';
 
           // Refresh the notes section to display the updated notes
-          refreshNotes();
+          document.getElementById('showNotesButton').click();
         } else {
           console.error('Failed to write note:', response.status, response.statusText);
         }
@@ -63,11 +63,7 @@
       });
 
       // Refresh the notes on page load
-      refreshNotes();
-
-      function refreshNotes() {
-        document.getElementById('showNotesButton').click();
-      }
+      document.getElementById('showNotesButton').click();
     </script>
   </body>
 </html>
