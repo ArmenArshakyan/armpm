@@ -4,7 +4,7 @@
     <title>Notes App</title>
   </head>
   <body>
-    <h1>Notes App v19</h1>
+    <h1>Notes App v20</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="5" cols="50"></textarea>
       <br />
@@ -45,8 +45,18 @@
         if (response.ok) {
           const text = await response.text();
 
-          // Display the plain text notes in the notes section
-          document.getElementById('notesSection').textContent = text;
+          // Split the notes into separate lines
+          const notes = text.split('\n');
+
+          // Clear the existing notes
+          document.getElementById('notesSection').innerHTML = '';
+
+          // Display each note as a separate line
+          notes.forEach((note) => {
+            const noteElement = document.createElement('p');
+            noteElement.textContent = note;
+            document.getElementById('notesSection').appendChild(noteElement);
+          });
         } else {
           console.error('Failed to retrieve notes:', response.status, response.statusText);
         }
@@ -54,6 +64,10 @@
 
       // Refresh the notes on page load
       refreshNotes();
+
+      function refreshNotes() {
+        document.getElementById('showNotesButton').click();
+      }
     </script>
   </body>
 </html>
