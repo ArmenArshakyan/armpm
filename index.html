@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="mycss.css">
   </head>
   <body>
-    <h1>Notes App v22</h1>
+    <h1>Notes App v23</h1>
     <form id="notesForm">
       <textarea id="noteInput" rows="10" cols="80"></textarea>
       <br />
@@ -37,6 +37,8 @@
         } else {
           console.error('Failed to write note:', response.status, response.statusText);
         }
+        // Clear the input field after successful submission
+        document.getElementById('noteInput').value = '';
       });
 
       document.getElementById('showNotesButton').addEventListener('click', async function () {
