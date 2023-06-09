@@ -1,25 +1,27 @@
 #submitButton {
     margin-top: 10px;
     margin-bottom: 10px;
+    font-size: 14px;
     background: #24b324;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 3px;
     font-weight: 700;
-    width: 120px;
+    width: 130px;
 }
 
 #showNotesButton {
     margin-top: 0;
     margin-bottom: 10px;
+    font-size: 14px;
     background: #f78100;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 3px;
     font-weight: 700;
-    width: 120px;
+    width: 130px;
 }
 
 #notes_section {
