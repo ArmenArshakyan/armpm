@@ -53,3 +53,22 @@ body {
     height: 50px;
     margin-bottom: 20px;
 }
+
+#main-div {
+    width: 100%;
+}
+
+#main-1 {
+    width: 50%;
+    float: left;
+}
+
+#main-2 {
+    width: 50%;
+    float: left;
+}
+
+#main-2 img {
+    height: 100%;
+    width: 100%;
+}
