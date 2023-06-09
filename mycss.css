@@ -32,8 +32,9 @@ body {
 }
 
 #notesSection p {
-    font-size: 20px;
+    font-size: 16px;
     font-family: monospace;
+    margin: 5px 0;
 }
 
 #notesSection p::before {
