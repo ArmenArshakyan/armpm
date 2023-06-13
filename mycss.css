@@ -29,6 +29,11 @@
     width: 130px;
 }
 
+#showNotesButton:hover {
+    opacity: 80%;
+    cursor: pointer;
+}
+
 #notes_section {
     font-size: 36px;
     margin-bottom: 10px;
