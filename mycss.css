@@ -11,6 +11,10 @@
     width: 130px;
 }
 
+#submitButton:hover {
+    opacity: 80%;
+}
+
 #showNotesButton {
     margin-top: 0;
     margin-bottom: 10px;
