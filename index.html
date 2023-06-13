@@ -10,7 +10,7 @@
     
     <div class="main-div">
       <div id="main-1">
-        <h1>Notes App v28<span>Built with Workers & KV</span></h1>
+        <h1>Notes App v29<span>Built with Workers & KV</span></h1>
         <form id="notesForm">
           <textarea id="noteInput" rows="5" cols="80"></textarea>
           <br />
@@ -63,44 +63,7 @@
       refreshNotes();
     </script>
     <script>
-            // Function to check and transform <p> elements into <h2> elements
-      function transformParagraphsToHeadings() {
-          const paragraphs = document.querySelectorAll('#notesSection p');
-        
-          paragraphs.forEach((paragraph) => {
-            const text = paragraph.textContent.trim();
-        
-            if (text.startsWith('---')) {
-              const heading = document.createElement('h2');
-              heading.textContent = text;
-        
-              paragraph.parentNode.replaceChild(heading, paragraph);
-            }
-          });
-        }
-        
-        // Mutation observer to monitor changes in the notes section
-        const observer = new MutationObserver(function(mutations) {
-          mutations.forEach(function(mutation) {
-            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-              mutation.addedNodes.forEach(function(node) {
-                if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'P') {
-                  transformParagraphsToHeadings();
-                }
-              });
-            }
-          });
-        });
-        
-        // Observe changes in the notes section
-        const notesSection = document.getElementById('notesSection');
-        observer.observe(notesSection, { childList: true, subtree: true });
-        
-        // Initial transformation of paragraphs to headings
-        transformParagraphsToHeadings();
-    </script>
-    <script>
-      // Function to check and transform <p> elements into <h3> elements
+      // Function to check and transform <p> elements into headings
         function transformParagraphsToHeadings() {
         const paragraphs = document.querySelectorAll('#notesSection p');
 
@@ -109,6 +72,11 @@
 
           if (text.endsWith('--')) {
             const heading = document.createElement('h3');
+            heading.textContent = text;
+
+            paragraph.parentNode.replaceChild(heading, paragraph);
+          } else if (text.startsWith('---')) {
+            const heading = document.createElement('h2');
             heading.textContent = text;
 
             paragraph.parentNode.replaceChild(heading, paragraph);
