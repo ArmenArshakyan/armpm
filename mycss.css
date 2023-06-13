@@ -20,7 +20,6 @@
 #submitButton:active {
     opacity: 80%;
     cursor: pointer;
-    background: #00729d;
     font-size: 12px;
 }
 
@@ -41,6 +40,12 @@
 #showNotesButton:hover {
     opacity: 80%;
     cursor: pointer;
+}
+
+#showNotesButton:active {
+    opacity: 80%;
+    cursor: pointer;
+    font-size: 12px;
 }
 
 #notes_section {
