@@ -18,9 +18,8 @@
 }
 
 #submitButton:active {
-    opacity: 80%;
+    opacity: 100%;
     cursor: pointer;
-    font-size: 14px;
 }
 
 #showNotesButton {
@@ -43,11 +42,8 @@
 }
 
 #showNotesButton:active {
-    opacity: 80%;
+    opacity: 100;
     cursor: pointer;
-    font-size: 14px;
-    width: 110px;
-    height: 25px;
 }
 
 #notes_section {
