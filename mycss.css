@@ -47,7 +47,7 @@
 }
 
 #notes_section {
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 10px;
     margin-top: 20px;
 }
@@ -93,8 +93,7 @@ body {
 }
 
 #cf-logo {
-    height: 50px;
-    margin-bottom: 20px;
+    height: 45px;
 }
 
 #main-div {
@@ -115,6 +114,10 @@ body {
 #main-2 img {
     height: 100%;
     width: 100%;
+}
+
+#main-1 h1 {
+    font-size: 36px;
 }
 
 #main-1 h1 span {
