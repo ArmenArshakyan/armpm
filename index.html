@@ -100,22 +100,22 @@
         transformParagraphsToHeadings();
     </script>
     <script>
-          // Function to check and transform <p> elements into <h2> elements
-    function transformParagraphsToHeadings() {
+      // Function to check and transform <p> elements into <h3> elements
+        function transformParagraphsToHeadings() {
         const paragraphs = document.querySelectorAll('#notesSection p');
-      
+
         paragraphs.forEach((paragraph) => {
           const text = paragraph.textContent.trim();
-      
+
           if (text.endsWith('--')) {
             const heading = document.createElement('h3');
             heading.textContent = text;
-      
+
             paragraph.parentNode.replaceChild(heading, paragraph);
           }
         });
       }
-      
+
       // Mutation observer to monitor changes in the notes section
       const observer = new MutationObserver(function(mutations) {
         mutations.forEach(function(mutation) {
@@ -128,11 +128,11 @@
           }
         });
       });
-      
+
       // Observe changes in the notes section
       const notesSection = document.getElementById('notesSection');
       observer.observe(notesSection, { childList: true, subtree: true });
-      
+
       // Initial transformation of paragraphs to headings
       transformParagraphsToHeadings();
     </script>
