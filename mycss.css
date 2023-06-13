@@ -1,6 +1,7 @@
 #submitButton {
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 35px;
     font-size: 14px;
     background: #00729d;
     color: white;
@@ -16,6 +17,13 @@
     cursor: pointer;
 }
 
+#submitButton:active {
+    opacity: 80%;
+    cursor: pointer;
+    background: #00729d;
+    font-size: 12px;
+}
+
 #showNotesButton {
     margin-top: 0;
     margin-bottom: 10px;
@@ -27,6 +35,7 @@
     border-radius: 3px;
     font-weight: 700;
     width: 130px;
+    height: 35px;
 }
 
 #showNotesButton:hover {
