@@ -48,6 +48,8 @@ body {
     font-size: 16px;
     font-family: monospace;
     margin: 5px 0;
+    height: 400px;
+    overflow: scroll;
 }
 
 #notesSection p::before {
@@ -74,8 +76,9 @@ body {
 }
 
 #main-2 {
-    width: 50%;
+    width: 45%;
     float: left;
+    margin-left: 30px;
 }
 
 #main-2 img {
