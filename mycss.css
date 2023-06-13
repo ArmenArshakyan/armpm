@@ -55,6 +55,17 @@ body {
     margin: 5px 0;
 }
 
+#notesSection h2 {
+    color: #00729d;
+    font-family: sans-serif;
+    color: #292929;
+}
+
+#notesSection h3 {
+    font-family: sans-serif;
+    color: #292929;
+}
+
 #notesSection p::before {
     content: "•";
     margin-right: 0.5em;
