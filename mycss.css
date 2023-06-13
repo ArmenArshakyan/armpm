@@ -13,6 +13,7 @@
 
 #submitButton:hover {
     opacity: 80%;
+    cursor: pointer;
 }
 
 #showNotesButton {
