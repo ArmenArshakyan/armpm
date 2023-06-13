@@ -9,7 +9,7 @@
     
     <div class="main-div">
       <div id="main-1">
-        <h1>Notes App v26<span>Built with Workers & KV</span></h1>
+        <h1>Notes App v27<span>Built with Workers & KV</span></h1>
         <form id="notesForm">
           <textarea id="noteInput" rows="5" cols="80"></textarea>
           <br />
@@ -45,8 +45,14 @@
       });
 
       document.getElementById('showNotesButton').addEventListener('click', async function () {
-        // Refresh the notes section to display the updated notes
-        await refreshNotes();
+        // Toggle the visibility of the notes section
+        const notesSection = document.getElementById('notesSection');
+        notesSection.style.display = notesSection.style.display === 'none' ? 'block' : 'none';
+
+        // If the notes section is visible, refresh the notes
+        if (notesSection.style.display === 'block') {
+          await refreshNotes();
+        }
       });
 
       async function refreshNotes() {
@@ -63,8 +69,8 @@
         }
       }
 
-      // Refresh the notes on page load
-      refreshNotes();
+      // Hide the notes section initially
+      document.getElementById('notesSection').style.display = 'none';
 
     </script>
   </body>
