@@ -20,7 +20,7 @@
 #submitButton:active {
     opacity: 80%;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #showNotesButton {
@@ -45,7 +45,9 @@
 #showNotesButton:active {
     opacity: 80%;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
+    width: 110px;
+    height: 25px;
 }
 
 #notes_section {
@@ -65,7 +67,7 @@ body {
 
 #notesSection p {
     font-size: 16px;
-    font-family: monospace;
+    font-family: sans-serif;
     margin: 5px 0;
 }
 
@@ -82,6 +84,7 @@ body {
     margin: 0;
     padding: 5px 0;
     border-bottom: 1px solid #cfcfcf;
+    margin-top: 15px;
 }
 
 #notesSection p::before {
