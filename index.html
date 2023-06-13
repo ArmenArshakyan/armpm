@@ -9,7 +9,7 @@
     
     <div class="main-div">
       <div id="main-1">
-        <h1>Notes App v25<span>Built with Workers & KV</span></h1>
+        <h1>Notes App v26<span>Built with Workers & KV</span></h1>
         <form id="notesForm">
           <textarea id="noteInput" rows="5" cols="80"></textarea>
           <br />
@@ -38,13 +38,18 @@
           document.getElementById('noteInput').value = '';
 
           // Refresh the notes section to display the updated notes
-          refreshNotes();
+          await refreshNotes();
         } else {
           console.error('Failed to write note:', response.status, response.statusText);
         }
       });
 
       document.getElementById('showNotesButton').addEventListener('click', async function () {
+        // Refresh the notes section to display the updated notes
+        await refreshNotes();
+      });
+
+      async function refreshNotes() {
         // Fetch the notes from the worker and display them in the notes section
         const response = await fetch('https://read.armen-arsh.workers.dev');
 
@@ -56,10 +61,11 @@
         } else {
           console.error('Failed to retrieve notes:', response.status, response.statusText);
         }
-      });
+      }
 
       // Refresh the notes on page load
       refreshNotes();
+
     </script>
   </body>
 </html>
