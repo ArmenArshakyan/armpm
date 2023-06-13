@@ -44,12 +44,15 @@ body {
     margin: 30px;
 }
 
+#notesSection {
+    height: 400px;
+    overflow: scroll;
+}
+
 #notesSection p {
     font-size: 16px;
     font-family: monospace;
     margin: 5px 0;
-    height: 400px;
-    overflow: scroll;
 }
 
 #notesSection p::before {
